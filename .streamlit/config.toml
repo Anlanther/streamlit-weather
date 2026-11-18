@@ -1,0 +1,4 @@
+[server]
+# The static build injects Streamlit's message protocol client-side; the
+# websocket endpoint is unreachable when the page is served from GitHub Pages,
+# so this overlay leaves

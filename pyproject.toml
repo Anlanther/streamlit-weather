@@ -1,0 +1,42 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "streamlit-weather"
+version = "1.0.0"
+description = "Hong Kong Weather Dashboard: live HKO forecasts, warnings, and a grounded chat interface."
+readme = "README.md"
+requires-python = ">=3.14"
+
+dependencies = [
+    "streamlit>=1.40,<2",
+    "requests>=2.31,<3",
+    "pandas>=2.1,<4",
+    "altair>=5.2,<7",
+    "openai>=1.40,<4",
+]
+
+[project.scripts]
+hk-weather = "streamlit_weather.__main__:main"
+
+[dependency-groups]
+dev = ["pytest>=8.0", "ruff>=0.6"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/streamlit_weather"]
+
+[tool.ruff]
+src = ["src"]
+line-length = 100
+target-version = "py314"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "B", "I", "UP"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["streamlit_weather"]
+
+[tool.pytest.ini_options]
+testpaths = ["src/streamlit_weather/tests"]
+addopts = "-q"
